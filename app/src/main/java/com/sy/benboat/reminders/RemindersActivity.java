@@ -84,7 +84,7 @@ public class RemindersActivity extends AppCompatActivity {
 //                Toast.makeText(RemindersActivity.this,"clicked"+position,Toast.LENGTH_SHORT).show();
                 AlertDialog.Builder builder=new AlertDialog.Builder(RemindersActivity.this);
                 ListView modelListView=new ListView(RemindersActivity.this);
-                String[] modes=new String[]{"Edit Reminder","Delete Reminder"};
+                String[] modes=new String[]{"Edit Reminder","New Reminder","Delete Reminder"};
                 ArrayAdapter<String> modeAdapter=new
                         ArrayAdapter<String>(RemindersActivity.this,
                         android.R.layout.simple_list_item_1,android.R.id.text1,modes);
@@ -102,6 +102,10 @@ public class RemindersActivity extends AppCompatActivity {
                             int nId=getIdFromPosition(masterListPostion);
                             Reminder reminder=mDbAdapter.fetchReminderById(nId);
                             fireCustomDialog(reminder);
+                        }
+                        //add create reminder
+                        else  if(position==1){
+                            fireCustomDialog(null);
                         }
                         else{
                             //delete reminder
@@ -177,7 +181,7 @@ public class RemindersActivity extends AppCompatActivity {
             case R.id.action_new:
                 Log.d(getLocalClassName(), "Create new Reminder");
                 //create new Reminder
-                fireCustomDialog(rnull);
+                fireCustomDialog(null);
                 return true;
             case R.id.action_exit:
                 finish();
