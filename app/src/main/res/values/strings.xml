@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Reminders</string>
+    <string name="new_reminder">new reminder</string>
+    <string name="exit">exit</string>
 </resources>
