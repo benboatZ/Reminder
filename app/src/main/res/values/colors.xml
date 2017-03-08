@@ -6,5 +6,8 @@
     <color name="dark_grey">#181818</color>
     <color name="white">#ffffff</color>
     <color name="green">#003300</color>
-    <color name="orange">#ff381a</color>
+    <color name="orange">#FF6600</color>
+    <color name="ligth_grey">#bababa</color>
+    <color name="black">#000000</color>
+    <color name="blue">#ff1118ff</color>
 </resources>
