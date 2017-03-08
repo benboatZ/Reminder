@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -32,6 +33,11 @@ public class RemindersActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reminders);
+
+        ActionBar actionBarc=getSupportActionBar();
+        actionBarc.setHomeButtonEnabled(true);
+        actionBarc.setDisplayShowCustomEnabled(true);
+        actionBarc.setIcon(R.mipmap.ic_launcher);
 
         mListView = (ListView) findViewById(R.id.Reminders_list_view);
        /* ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
