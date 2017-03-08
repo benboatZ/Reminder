@@ -33,7 +33,7 @@ public class RemindersDbAdapter {
     private final Context mCtx;
 
     public static final String DATABASE_CREATE=
-            "CREATE TABLE if not exits "+TABLE_NAME+"( "+
+            "CREATE TABLE if not exists "+TABLE_NAME+"( "+
                     COL_ID+" INTEGER PRIMARY KEY autoincrement, "+
                     COL_CONTENT+" TEXT, "+
                     COL_IMPORTANT+" INTEGER  );";

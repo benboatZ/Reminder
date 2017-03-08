@@ -28,6 +28,13 @@ public class RemindersActivity extends AppCompatActivity {
         mDbAdapter=new RemindersDbAdapter(this);
         mDbAdapter.open();
 
+        if(savedInstanceState==null){
+            //Clear all data
+            mDbAdapter.deleteAllReminder();
+            //Add some data
+            insertSomeReminders();
+    }
+
         Cursor cursor=mDbAdapter.fetchAllReminders();
 
         String[] from=new String[]{
@@ -48,6 +55,12 @@ public class RemindersActivity extends AppCompatActivity {
         );
 
         mListView.setAdapter(mCursorAdapter);
+    }
+
+    private void insertSomeReminders() {
+        mDbAdapter.createReminder("沪江英语课件课",true);
+        mDbAdapter.createReminder("沪江英语口语课预习",true);
+        mDbAdapter.createReminder("新加坡邮件回复",false);
     }
 
     @Override

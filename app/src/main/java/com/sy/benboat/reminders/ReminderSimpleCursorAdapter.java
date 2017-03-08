@@ -12,6 +12,7 @@ import android.widget.SimpleCursorAdapter;
  * Created by benboat on 2017/3/8.
  */
 public class ReminderSimpleCursorAdapter extends SimpleCursorAdapter{
+
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public ReminderSimpleCursorAdapter(Context context, int layout, Cursor c, String[] from, int[] to, int flags) {
         super(context, layout, c, from, to, flags);
