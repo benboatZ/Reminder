@@ -29,7 +29,6 @@
             android:padding="10dp"
             android:ellipsize="end"
             android:maxLines="1"/>
-
     </LinearLayout>
     <view
         class="android.view.View"

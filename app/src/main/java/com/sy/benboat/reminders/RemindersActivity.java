@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -40,7 +39,7 @@ public class RemindersActivity extends AppCompatActivity {
         actionBarc.setIcon(R.mipmap.ic_launcher);
 
         mListView = (ListView) findViewById(R.id.Reminders_list_view);
-       /* ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+        /*ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this,
                 R.layout.reminders_row,
                 R.id.row_text,
@@ -50,17 +49,17 @@ public class RemindersActivity extends AppCompatActivity {
         mDbAdapter=new RemindersDbAdapter(this);
         mDbAdapter.open();
 
-        if(savedInstanceState==null){
+        /*if(savedInstanceState==null){
             //Clear all data
             mDbAdapter.deleteAllReminder();
             //Add some data
             insertSomeReminders();
-    }
+    }*/
 
         Cursor cursor=mDbAdapter.fetchAllReminders();
 
         String[] from=new String[]{
-                RemindersDbAdapter.COL_CONTENT
+                RemindersDbAdapter.COL_CONTENTMORE
         };
 
         int[] to=new int[]{
@@ -175,8 +174,8 @@ public class RemindersActivity extends AppCompatActivity {
         mDbAdapter.createReminder("新加坡邮件回复",false);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+//    @Override
+/*    public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_new:
                 Log.d(getLocalClassName(), "Create new Reminder");
@@ -189,15 +188,17 @@ public class RemindersActivity extends AppCompatActivity {
             default:
                 return false;
         }
-    }
+    }*/
 
     private void fireCustomDialog(final Reminder reminder){
         //custom dailog
         final Dialog dialog=new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.requestWindowFeature(Window.FEATURE_ACTION_BAR);
         dialog.setContentView(R.layout.dialog_custom);
 
         TextView titleView= (TextView) dialog.findViewById(R.id.custom_title);
+        TextView timestampView= (TextView) dialog.findViewById(R.id.custom_timestamp);
         final EditText editCustom= (EditText) dialog.findViewById(R.id.custom_edit_reminder);
         final CheckBox checkbox= (CheckBox) dialog.findViewById(R.id.custom_check_box);
 
@@ -208,7 +209,8 @@ public class RemindersActivity extends AppCompatActivity {
 
         //this is for an edit
         if(isEditOPeration){
-            titleView.setText("Edit Reminder");
+            titleView.setText("Edit Reminder:");
+            timestampView.setText(reminder.getTimestamp());
             checkbox.setChecked(reminder.getImportant()==1);
             editCustom.setText(reminder.getContent());
             rootLayout.setBackgroundColor(getResources().getColor(R.color.blue));
@@ -220,7 +222,7 @@ public class RemindersActivity extends AppCompatActivity {
                 String reminderText=editCustom.getText().toString();
                 if(isEditOPeration){
                     Reminder reminderEdited=new Reminder(reminder.getId(),
-                            reminderText,checkbox.isChecked()?0:1);
+                            reminderText,checkbox.isChecked()?1:0,"");
                     mDbAdapter.updateReminder(reminderEdited);
                     //this is for new reminder
                 }else{

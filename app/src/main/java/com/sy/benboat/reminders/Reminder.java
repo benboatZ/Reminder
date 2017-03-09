@@ -7,6 +7,7 @@ public class Reminder {
     private int mId;
     private String mContent;
     private int mImportant;
+    private String mTimestamp;
 
     public int getId() {
         return mId;
@@ -32,10 +33,18 @@ public class Reminder {
         mImportant = important;
     }
 
-    public Reminder(int id, String content, int important) {
-
+    public Reminder(int id, String content, int important, String timestamp) {
         mId = id;
         mContent = content;
         mImportant = important;
+        mTimestamp = timestamp;
+    }
+
+    public String getTimestamp() {
+        return mTimestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        mTimestamp = timestamp;
     }
 }
